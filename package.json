@@ -1,0 +1,14 @@
+{
+  "name": "accomplishment-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx browserify src/index.js -o dist/main.js"
+  },
+  "author": "Raschid JF Rafaelly<hello@raschidjfr.dev>",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^17.0.0"
+  }
+}
