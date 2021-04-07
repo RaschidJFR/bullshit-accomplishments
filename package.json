@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx browserify src/js/index.js -o dist/js/main.js",
-    "prebuild": "rm -rf dist",
-    "postbuild": "cp src/index.html dist"
+    "build": "npx browserify src/js/index.js -o docs/js/main.js",
+    "prebuild": "rm -rf docs",
+    "postbuild": "cp src/index.html docs"
   },
   "author": "Raschid JF Rafaelly<hello@raschidjfr.dev>",
   "license": "ISC",
