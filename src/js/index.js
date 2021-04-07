@@ -1,3 +1,4 @@
+require('./job-title');
 const verbs = require('./lists/power_verbs.json').map(e => e.toLowerCase());
 const adjectives = require('./lists/adjectives.json').map(e => e.toLowerCase());
 const adverbs = require('./lists/adverbs.json').map(e => e.toLowerCase());
@@ -13,7 +14,7 @@ function getRandomElement(arr) {
   return arr[n];
 }
 
-function setRandomValues() {
+function randomize() {
   const verb1 = getRandomElement(verbs);
   const adjective = getRandomElement(adjectives);
   const term = getRandomElement(terms);
@@ -31,14 +32,11 @@ function setRandomValues() {
   $('#metric').val(metric);
   $('#amount').val(amount);
   $('#unit').val(unit);
+
+  updateOutput();
 }
 
-function generate() {
-  $('#output').val(setRandomValues());
-  update();
-}
-
-function update() {
+function updateOutput() {
   const verb1 = $('#verb1').val() || '';
   const adjective = $('#adjective').val() || '';
   const term = $('#term').val() || '';
@@ -52,18 +50,38 @@ function update() {
   $('#output').val(text);
 }
 
-verbs.sort((a, b) => a > b ? 1 : -1).forEach(v => $("#verb1, #verb2").append(new Option(v, v)));
-adjectives.sort((a, b) => a > b ? 1 : -1).forEach(v => $("#adjective").append(new Option(v, v)));
-terms.sort((a, b) => a > b ? 1 : -1).forEach(v => $("#term").append(new Option(v, v)));
-adverbs.sort((a, b) => a > b ? 1 : -1).forEach(v => $("#adverb").append(new Option(v, v)));
-metrics.sort((a, b) => a > b ? 1 : -1).forEach(v => $("#metric").append(new Option(v, v)));
-units.sort((a, b) => a > b ? 1 : -1).forEach(v => $("#unit").append(new Option(v, v)));
+/**
+ * @param {string} text 
+ */
+function add(text) {
+  $('ul').append(`<li>${text}</li>`)
+}
 
-$('.form-control').each(function(_i, element) {
-  $(element).bind('change', update);
-});
+function init() {
+  verbs.sort((a, b) => a > b ? 1 : -1).forEach(v => $("#verb1, #verb2").append(new Option(v, v)));
+  adjectives.sort((a, b) => a > b ? 1 : -1).forEach(v => $("#adjective").append(new Option(v, v)));
+  terms.sort((a, b) => a > b ? 1 : -1).forEach(v => $("#term").append(new Option(v, v)));
+  adverbs.sort((a, b) => a > b ? 1 : -1).forEach(v => $("#adverb").append(new Option(v, v)));
+  metrics.sort((a, b) => a > b ? 1 : -1).forEach(v => $("#metric").append(new Option(v, v)));
+  units.sort((a, b) => a > b ? 1 : -1).forEach(v => $("#unit").append(new Option(v, v)));
 
-$('.btn#generate').click(function(e) {
-  e.preventDefault();
-  generate();
-});
+  $('.form-control').each(function(_i, element) {
+    $(element).bind('change', updateOutput);
+  });
+
+  $('.btn#randomize').click(function(e) {
+    e.preventDefault();
+    randomize();
+  });
+
+  $('.btn#add').click(function(e) {
+    e.preventDefault();
+    const text = $('#output').val()
+    if (text) add(text);
+    $('#output').val('')
+  });
+
+  $('#jobTitle').text(window.getJobTitle());
+}
+
+init();

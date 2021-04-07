@@ -12,11 +12,13 @@
           integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
-<body style="height: 100vh;">
+<body style="height: 100vh;" class="p-3">
+  <section class="text-center">
+    <h1>Nonsense Accomplishment Generator</h1>
+  </section>
 
   <section class="d-flex h-100">
     <div class="text-center container m-auto">
-      <h1>Power Accomplishment Generator</h1>
 
       <form class="form-group row">
         <select class="form-control col-12 col-md-3" id="verb1" required>
@@ -41,15 +43,26 @@
         <select class="form-control col-12 col-md-3" id="unit" required>
           <option disabled selected>Measure</option>
         </select>
-        <button class="btn btn-secondary btn-block" id="generate" role="button">Randomize</button>
+        <button class="btn btn-secondary btn-block" id="randomize" role="button">Randomize</button>
       </form>
 
       <div class="form-group row">
         <textarea class="form-control w-100" id="output" placeholder="Click to generate" rows="3" readonly
                   style="background-color: white; resize: none;"></textarea>
-        <!-- <button type="submit" class="btn btn-primary btn-block" id="add" role="button">Add</button> -->
+        <button type="submit" class="btn btn-primary btn-block" id="add" role="button">Add</button>
+      </div>
+
+      <hr>
+
+      <div class="form-group text-left row mt-5">
+        <h5 class="w-100">
+          <span id="jobTitle"></span>
+          <small class="float-right">Yesterday - Present</small>
+        </h5>
+        <ul></ul>
       </div>
     </div>
+
   </section>
 
   <script src="js/main.js"></script>
