@@ -4,7 +4,8 @@ const adjectives = require('./lists/adjectives.json').map(e => e.toLowerCase());
 const adverbs = require('./lists/adverbs.json').map(e => e.toLowerCase());
 const terms = require('./lists/terms.json').map(e => e.toLowerCase());
 const metrics = require('./lists/metrics.json').map(e => e.toLowerCase());
-const units = ['k USD', 'M USD', '%',];
+const units = ['k USD', 'M USD', '%', '%'];
+const preps = ['of', 'up to', 'about', 'by', 'nearly'];
 
 /**
  * @param {string[]} arr
@@ -45,15 +46,21 @@ function updateOutput() {
   const metric = $('#metric').val() || '';
   const amount = $('#amount').val() || '';
   const unit = $('#unit').val() || '';
+  const prep = getRandomElement(preps);
+  const _ = '______'
 
-  const text = `${verb1} ${adjective} ${term} and ${adverb} ${verb2} ${metric} by ${amount}${unit}`;
+  const invalid = (!verb1 || !adjective || !term || !adverb || !verb2 || !metric || !amount || !unit || !preps);
+  $('.btn#add').prop('disabled', invalid);
+
+  const text = `${verb1 || _} ${adjective || _} ${term || _} and `
+    + `${adverb || _} ${verb2 || _} ${metric || _} ${prep || _} ${amount || _}${unit || _}`;
   $('#output').val(text);
 }
 
 /**
  * @param {string} text 
  */
-function add(text) {
+function appendBullet(text) {
   $('ul').append(`<li>${text}</li>`)
 }
 
@@ -77,8 +84,9 @@ function init() {
   $('.btn#add').click(function(e) {
     e.preventDefault();
     const text = $('#output').val()
-    if (text) add(text);
-    $('#output').val('')
+    if (text) appendBullet(text);
+    $('#output').val('');
+    $('.btn#add').prop('disabled', true);
   });
 
   $('#jobTitle').text(window.getJobTitle());

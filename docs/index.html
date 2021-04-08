@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+        content="Generate stupid accomplishments for your resume that sound like a deal and make no sense at all!">
   <title>Nonsense Accomplishment Generator</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -15,6 +17,10 @@
 <body style="height: 100vh;" class="p-3">
   <section class="text-center">
     <h1>Nonsense Accomplishment Generator</h1>
+    <p>
+      Generate stupid accomplishments for your resume that sound like a deal and make no sense at all!
+      <small>(<i><a href="https://github.com/RaschidJFR/nonsense-accomplishments">source</a></i>)</small>
+    </p>
   </section>
 
   <section class="d-flex h-100">
@@ -47,9 +53,12 @@
       </form>
 
       <div class="form-group row">
-        <textarea class="form-control w-100" id="output" placeholder="Click to generate" rows="3" readonly
+        <textarea class="form-control w-100" id="output"
+                  rows="3"
+                  readonly
+                  placeholder="Click 'Randomize' to generate an accomplishment"
                   style="background-color: white; resize: none;"></textarea>
-        <button type="submit" class="btn btn-primary btn-block" id="add" role="button">Add</button>
+        <button type="submit" class="btn btn-primary btn-block" id="add" role="button" disabled>Add to resume</button>
       </div>
 
       <hr>

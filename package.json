@@ -12,5 +12,6 @@
   "license": "ISC",
   "devDependencies": {
     "browserify": "^17.0.0"
-  }
+  },
+  "repository": "github:RaschidJFR/nonsense-accomplishments"
 }
